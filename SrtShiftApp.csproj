@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\SrtCommunicator.cs" />
+    <Compile Include="Model\SrtProcessor.cs" />
     <Compile Include="Model\SrtEntity.cs" />
     <Compile Include="Model\SrtError.cs" />
     <Compile Include="Program.cs" />

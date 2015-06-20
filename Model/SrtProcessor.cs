@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SrtShiftApp.Model
 {
-    public class SrtCommunicator
+    public class SrtProcessor
     {
         private string _filePath;
         private SrtEntity _srtSet = new SrtEntity();
@@ -90,7 +90,12 @@ namespace SrtShiftApp.Model
             }
             var path = Path.GetDirectoryName(_filePath);
             var file = Path.GetFileName(_filePath);
-            var newFileName = string.Format("{0}_{1}", Path.GetRandomFileName(), file);
+            //var newFileName = string.Format("{0}_{1}", file, Path.GetRandomFileName());
+            var newFileName = string.Format("{0}_{1:yyyy_MM_dd_HH_mm_ss}{2}", 
+                                            Path.GetFileNameWithoutExtension(file), 
+                                            DateTime.Now, 
+                                            Path.GetExtension(file));
+            
             var newFilePath = Path.Combine(path, newFileName);
             File.WriteAllText(newFilePath, content.ToString());
 
