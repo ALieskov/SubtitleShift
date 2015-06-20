@@ -48,7 +48,6 @@ namespace SrtShiftApp
                 }
             }
 
-
             if (shift == TimeSpan.Zero)
             {
                 Console.WriteLine("Wrong or empty 'Time shift' option value.");
