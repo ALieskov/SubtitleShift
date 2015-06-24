@@ -62,7 +62,12 @@ namespace SrtShiftApp
             }
 
             task = cmm.ReadSrtAsync(fileName);
+            do
+            {
+                Console.Write("."); 
 
+            } while (!task.IsCompleted);
+            
             var errs = task.Result;
 
             if (!string.IsNullOrEmpty(errs))
@@ -73,9 +78,12 @@ namespace SrtShiftApp
             cmm.ShiftSubtitles(shift);
 
             var file = cmm.WriteSrt();
-            Console.WriteLine(file);
 
-            Console.WriteLine("\r\nPress Enter key to continue...");
+            Console.WriteLine("Done."); 
+
+            Console.WriteLine("Find results in '{0}'", file);
+
+            Console.WriteLine("\r\nPress 'Enter' key to continue...");
             Console.ReadLine();
         }
 
@@ -88,5 +96,6 @@ namespace SrtShiftApp
                 "\r\n\t+-mm:ss.fff      Time shift";
             Console.WriteLine(cmdCommonOutput);
         }
+
     }
 }

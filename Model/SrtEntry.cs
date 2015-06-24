@@ -25,6 +25,7 @@ namespace SrtShiftApp
             cnt.AppendFormat("{0} --> {1}", TimeStart.ToString(@"hh\:mm\:ss\,fff"), (TimeStart + Duration).ToString(@"hh\:mm\:ss\,fff"));
             cnt.Append(Environment.NewLine);
             cnt.AppendLine(Text);
+            cnt.Append(Environment.NewLine);
             
             return cnt.ToString();
         }

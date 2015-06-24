@@ -82,11 +82,11 @@ namespace SrtShiftApp.Model
                         errs.AppendFormat("[{0}] Wrong TimeEnd", blockCounter);
                     }
                 }
-                else if (!line.Equals(Environment.NewLine))
+                else if (!string.IsNullOrWhiteSpace(line) && !line.Equals(Environment.NewLine))
                 {
                     entry.Text = string.Format("{0}{1}{2}"
                         , entry.Text
-                        , string.IsNullOrEmpty(entry.Text) ? "" : Environment.NewLine
+                        , string.IsNullOrWhiteSpace(entry.Text) ? "" : Environment.NewLine
                         , line);
                 }
 
@@ -134,10 +134,12 @@ namespace SrtShiftApp.Model
                 throw new ArgumentNullException("shift");
             }
 
-            foreach (var subtitle in _srtSet.Subtitles)
-            {
-                subtitle.TimeStart = subtitle.TimeStart + shift;
-            }
+            Parallel.ForEach(_srtSet.Subtitles, srt => srt.TimeStart = srt.TimeStart + shift);
+
+            //foreach (var subtitle in _srtSet.Subtitles)
+            //{
+            //    subtitle.TimeStart = subtitle.TimeStart + shift;
+            //}
         }
     }
 }
